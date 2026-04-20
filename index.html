@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -241,6 +242,12 @@ header p{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(2
       <div class="tnum" id="tnum">60</div>
     </div>
     <button class="ebtn" id="lbtn" onclick="restart()" style="opacity:0.35;pointer-events:none;">Réessayer</button>
+    <br><br><button onclick="adminUnlock()" style="background:none;border:none;color:rgba(253,246,227,0.18);font-size:10px;cursor:pointer;letter-spacing:2px;margin-top:6px;font-family:'Cinzel',serif;">🔑 Code admin</button>
+    <div id="adminBox" style="display:none;margin-top:12px;">
+      <input id="adminInput" type="password" maxlength="10" onkeydown="if(event.key==='Enter')checkCode()" placeholder="Code secret..." style="background:rgba(253,246,227,0.07);border:1px solid rgba(253,246,227,0.2);border-radius:8px;padding:9px 16px;color:#FDF6E3;font-family:'Cinzel',serif;font-size:14px;letter-spacing:4px;text-align:center;outline:none;width:180px;">
+      <button onclick="checkCode()" style="margin-left:8px;background:rgba(253,246,227,0.1);border:1px solid rgba(253,246,227,0.25);border-radius:8px;padding:9px 16px;color:#FDF6E3;font-family:'Cinzel',serif;font-size:12px;cursor:pointer;">OK</button>
+      <div id="adminErr" style="font-size:11px;color:#EF9A9A;margin-top:6px;opacity:0;transition:opacity 0.3s;">Code incorrect !</div>
+    </div>
     <div class="sig">✦ By <strong>Lena &amp; LuzObscura</strong> ✦</div>
   </div>
 </div>
@@ -454,6 +461,24 @@ function restart(){
   document.getElementById('introScreen').style.display='block';
 }
 
+
+const ADMIN_CODE = "1234";
+function adminUnlock(){
+  const box=document.getElementById("adminBox");
+  box.style.display=box.style.display==="none"?"block":"none";
+  if(box.style.display==="block") setTimeout(()=>document.getElementById("adminInput").focus(),50);
+}
+function checkCode(){
+  const val=document.getElementById("adminInput").value;
+  const err=document.getElementById("adminErr");
+  if(val===ADMIN_CODE){clearInterval(tmrInt);restart();}
+  else{
+    err.style.opacity="1";
+    document.getElementById("adminInput").value="";
+    document.getElementById("adminInput").style.borderColor="#E04040";
+    setTimeout(()=>{err.style.opacity="0";document.getElementById("adminInput").style.borderColor="rgba(253,246,227,0.2)";},2000);
+  }
+}
 function sparks(btn){
   const r=btn.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
   for(let i=0;i<10;i++){
