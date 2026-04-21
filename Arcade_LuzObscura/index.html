@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zombs: Nuit Éternelle</title>
+    <meta name="description" content="Survivez aux vagues de zombies dans ce jeu de tir intense !">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main Game Canvas -->
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- UI Overlay -->
+        <div id="ui-layer">
+            <div id="hud" class="hidden">
+                <div class="hud-top">
+                    <div id="score-display">Score: 0</div>
+                    <div id="wave-display">Vague: 1</div>
+                </div>
+                <div class="hud-bottom">
+                    <div id="health-bar-container">
+                        <div id="health-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menus -->
+            <div id="main-menu" class="menu-screen">
+                <h1 class="game-title">ZOMBS<br><span>NUIT ÉTERNELLE</span></h1>
+                <p class="instructions">PC: ZQSD/Flèches + Souris<br>Mobile: Écran Tactile (Joysticks)</p>
+                <button id="start-btn" class="btn">JOUER</button>
+            </div>
+
+            <div id="game-over-menu" class="menu-screen hidden">
+                <h1 class="game-over-title">VOUS ÊTES MORT</h1>
+                <p id="final-stats">Score Final: <span id="final-score">0</span></p>
+                <button id="restart-btn" class="btn">REJOUER</button>
+            </div>
+        </div>
+
+        <!-- Mobile Joysticks Container -->
+        <div id="joystick-zone"></div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- NippleJS for Mobile controls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.1/nipplejs.min.js"></script>
+    <script src="js/entities.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
